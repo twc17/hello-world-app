@@ -10,7 +10,7 @@ node {
 	imageName = "${registryHost}${appName}:${tag}"
 
 	stage('Build') {
-		sh "docker build -t ${imageName} -f Dockerfile hello-world-app"
+		sh "docker build -t ${imageName} ."
 	}
 
 	stage('Push') {
