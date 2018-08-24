@@ -8,6 +8,6 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build .
 
 FROM scratch
-COPY --from=0 /go/src/app .
+COPY /go/src/app .
 
 ENTRYPOINT ["/app"]
