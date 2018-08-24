@@ -5,9 +5,7 @@ WORKDIR /go/src/app
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build .
+RUN go get -d -v ./...
+RUN go install -v ./...
 
-FROM scratch
-COPY /go/src/app .
-
-ENTRYPOINT ["/app"]
+CMD ["app"]
