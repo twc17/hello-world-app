@@ -36,7 +36,7 @@ spec:
 		
 		sh 'kubectl patch --local -o yaml -f apps/hello-world-app/deployments/hello-world-app.yaml -p "$(cat patch.yaml)" > output.yaml'
 		sh 'mv output.yaml apps/hello-world-app/deployments/hello-world-app.yaml'
-		sh 'git add apps/building-login/deployments/hello-world-app.yaml'
+		sh 'git add apps/hello-world-app/deployments/hello-world-app.yaml'
 		sh """
 		git commit -F- <<EOF
 Update the hello-world-app application
