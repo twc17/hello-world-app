@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"html/tmplate"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"fmt"
