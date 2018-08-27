@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"html/tmplate"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -14,6 +15,30 @@ const (
 	version = "v0.0.1"
 )
 
+type Page struct {
+	Title string
+	Body []byte
+}
+
+func loadPage(title string) (*Page, error) {
+	filename := title + ".txt"
+	body, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+	return &Page{Title: title, Body: body}, nil
+}
+
+func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
+	t, _ := template.ParseFiles(tmpl + ".html")
+	t.Execute(w, p)
+}
+
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(200)
+}
+
+
 func main() {
 	log.Println("Starting hello-world application")
 
@@ -21,9 +46,7 @@ func main() {
 		fmt.Fprintf(w, "Hello World! - CI/CD Test\n -Troy\n")
 	})
 
-	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-	})
+	http.HandleFunc("/health", healthHandler)
 
 	http.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, version)
