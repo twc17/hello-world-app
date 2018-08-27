@@ -5,6 +5,7 @@ import (
 	"html/tmplate"
 	"io/ioutil"
 	"log"
+	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
@@ -13,6 +14,7 @@ import (
 
 const (
 	version = "v0.0.1"
+	title = "YAY!"
 )
 
 type Page struct {
@@ -38,19 +40,23 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 }
 
+func versionHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, version)
+}
+
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	p, _ := loadPage(title)
+	renderTemplate(w, "index", p)
+}
 
 func main() {
 	log.Println("Starting hello-world application")
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello World! - CI/CD Test\n -Troy\n")
-	})
+	http.HandleFunc("/", rootHandler)
 
 	http.HandleFunc("/health", healthHandler)
 
-	http.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, version)
-	})
+	http.HandleFunc("/version", versionHandler)
 
 	s := http.Server{Addr: ":80"}
 	go func() {
