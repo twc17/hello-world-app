@@ -1,3 +1,14 @@
+/*
+Title: main.go
+
+Author: Troy Caro <twc17@pitt.edu>
+Date Modified: 08/27/2018
+Version: 0.0.2
+
+Purpose:
+	Hello World! web application
+*/
+
 package main
 
 import (
