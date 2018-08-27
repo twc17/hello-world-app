@@ -44,7 +44,7 @@ Update the hello-world-app application
 This commit updates the hello-world-app deployment container image to:
 
 	${imageName}
-	https://github.com/twc17/${appName}/${tag}"""
+	https://github.com/twc17/${appName}/commit/${tag}"""
 		sh 'git config --global credential.https://github.com.helper /usr/local/bin/hub-credential-helper'
 		sh 'git push origin master'
 	}
