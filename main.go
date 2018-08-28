@@ -25,7 +25,7 @@ import (
 
 const (
 	version = "v0.0.3"
-	title = "YAY!"
+	title = "YAY"
 )
 
 type Page struct {
