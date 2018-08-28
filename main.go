@@ -2,8 +2,8 @@
 Title: main.go
 
 Author: Troy Caro <twc17@pitt.edu>
-Date Modified: 08/27/2018
-Version: 0.0.2
+Date Modified: 08/28/2018
+Version: 0.0.3
 
 Purpose:
 	Hello World! web application
@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	version = "v0.0.2"
+	version = "v0.0.3"
 	title = "YAY!"
 )
 
